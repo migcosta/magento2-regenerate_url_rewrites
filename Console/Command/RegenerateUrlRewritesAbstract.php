@@ -541,7 +541,9 @@ abstract class RegenerateUrlRewritesAbstract extends Command
             ->addFieldToFilter('level', array('gt' => '1'))
             ->setOrder('level', 'DESC')
             // use limit to avoid a "eating" of a memory
-            ->setPageSize($this->_collectionPageSize);
+            ->setPageSize($this->_collectionPageSize)
+            //get categories from the selected store
+            ->setStoreId( $storeId );
 
         $rootCategoryId = $this->_getStoreRootCategoryId($storeId);
         if ($rootCategoryId > 0) {
